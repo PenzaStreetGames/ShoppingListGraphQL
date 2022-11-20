@@ -1,6 +1,3 @@
-import os
-
-
 def set_app_configs(app):
     DB_USERNAME = 'postgres'
     DB_PASSWORD = '123456'
