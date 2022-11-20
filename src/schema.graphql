@@ -1,0 +1,46 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type ShoppingListItem {
+    uid: String!
+    name: String!
+    quantity: Int!
+    completed: Boolean!
+    user_uid: String
+}
+
+type ShoppingListItemResult {
+    success: Boolean!
+    errors: [String]
+    shoppingListItem: ShoppingListItem
+}
+
+type ShoppingListItemsResult {
+    success: Boolean!
+    errors: [String]
+    shoppingListItems: [ShoppingListItem]!
+}
+
+type Query {
+    listShoppingListItems: ShoppingListItemsResult
+    getShoppingListItem(uid: String!): ShoppingListItemResult
+}
+
+type Mutation {
+    createShoppingListItem(
+        name: String!
+        quantity: Int!
+        completed: Boolean!
+        user_uid: String
+    ): ShoppingListItemResult!
+    updateShoppingListItem(
+        uid: String!
+        name: String
+        quantity: Int
+        completed: Boolean
+        user_uid: String
+    ): ShoppingListItemResult!
+    deleteShoppingListItem(uid: String): ShoppingListItemResult!
+}

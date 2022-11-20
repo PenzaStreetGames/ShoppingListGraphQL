@@ -1,0 +1,5 @@
+flask
+ariadne
+flask-sqlalchemy==2.5.1
+flask-cors
+psycopg2-binary

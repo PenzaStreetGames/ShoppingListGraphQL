@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  python:
+    build: ./src
+    ports:
+      - "8080:8080"
+    links:
+      - db
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:123456@db:5432/api_graphql
+  db:
+    environment:
+      - PGDATA=/var/lib/postgresql/data/api_graphql
+      - POSTGRES_PASSWORD=123456
+    image: 'postgres:12.3-alpine'
+    ports:
+      - '5431:5432'
+    restart: always
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d:ro
